@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/portfolio/static/css/main.ea36bf1c.css",
-    "main.js": "/portfolio/static/js/main.98b4f73a.js",
-    "static/js/453.1407b060.chunk.js": "/portfolio/static/js/453.1407b060.chunk.js",
-    "static/media/Johns Cafe.PNG": "/portfolio/static/media/Johns Cafe.608d00bd0ff4c9765154.PNG",
-    "static/media/Netflix.PNG": "/portfolio/static/media/Netflix.5143ac3aec2c684b334f.PNG",
-    "static/media/Razer.PNG": "/portfolio/static/media/Razer.2d55c25cbcacdb410688.PNG",
-    "static/media/avatar.jpg": "/portfolio/static/media/avatar.fe48fbb1b6ce4e7740b8.jpg",
-    "static/media/Calculator.PNG": "/portfolio/static/media/Calculator.125da223eea52790885f.PNG",
-    "static/media/linkedin.png": "/portfolio/static/media/linkedin.532617a791b8974b7652.png",
-    "static/media/facebook.webp": "/portfolio/static/media/facebook.f1b98b28a01ce6ef2318.webp",
-    "static/media/logo.svg": "/portfolio/static/media/logo.03ea5a731574a4181f152092fb965eca.svg",
-    "index.html": "/portfolio/index.html",
-    "main.ea36bf1c.css.map": "/portfolio/static/css/main.ea36bf1c.css.map",
-    "main.98b4f73a.js.map": "/portfolio/static/js/main.98b4f73a.js.map",
-    "453.1407b060.chunk.js.map": "/portfolio/static/js/453.1407b060.chunk.js.map"
+    "main.css": "/portfolio/homepage/static/css/main.91da16b7.css",
+    "main.js": "/portfolio/homepage/static/js/main.433102de.js",
+    "static/js/453.1407b060.chunk.js": "/portfolio/homepage/static/js/453.1407b060.chunk.js",
+    "static/media/Johns Cafe.PNG": "/portfolio/homepage/static/media/Johns Cafe.608d00bd0ff4c9765154.PNG",
+    "static/media/Netflix.PNG": "/portfolio/homepage/static/media/Netflix.5143ac3aec2c684b334f.PNG",
+    "static/media/Razer.PNG": "/portfolio/homepage/static/media/Razer.2d55c25cbcacdb410688.PNG",
+    "static/media/avatar.jpg": "/portfolio/homepage/static/media/avatar.fe48fbb1b6ce4e7740b8.jpg",
+    "static/media/Calculator.PNG": "/portfolio/homepage/static/media/Calculator.125da223eea52790885f.PNG",
+    "static/media/linkedin.png": "/portfolio/homepage/static/media/linkedin.532617a791b8974b7652.png",
+    "static/media/facebook.webp": "/portfolio/homepage/static/media/facebook.f1b98b28a01ce6ef2318.webp",
+    "static/media/logo.svg": "/portfolio/homepage/static/media/logo.03ea5a731574a4181f152092fb965eca.svg",
+    "index.html": "/portfolio/homepage/index.html",
+    "main.91da16b7.css.map": "/portfolio/homepage/static/css/main.91da16b7.css.map",
+    "main.433102de.js.map": "/portfolio/homepage/static/js/main.433102de.js.map",
+    "453.1407b060.chunk.js.map": "/portfolio/homepage/static/js/453.1407b060.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ea36bf1c.css",
-    "static/js/main.98b4f73a.js"
+    "static/css/main.91da16b7.css",
+    "static/js/main.433102de.js"
   ]
 }
