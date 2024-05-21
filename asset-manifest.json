@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/portfolio/static/css/main.91da16b7.css",
-    "main.js": "/portfolio/static/js/main.d5444b82.js",
+    "main.js": "/portfolio/static/js/main.0c54bd2c.js",
     "static/js/453.1407b060.chunk.js": "/portfolio/static/js/453.1407b060.chunk.js",
-    "static/media/Johns Cafe.PNG": "/portfolio/static/media/Johns Cafe.608d00bd0ff4c9765154.PNG",
-    "static/media/Netflix.PNG": "/portfolio/static/media/Netflix.5143ac3aec2c684b334f.PNG",
-    "static/media/Razer.PNG": "/portfolio/static/media/Razer.2d55c25cbcacdb410688.PNG",
-    "static/media/avatar.jpg": "/portfolio/static/media/avatar.fe48fbb1b6ce4e7740b8.jpg",
-    "static/media/Calculator.PNG": "/portfolio/static/media/Calculator.125da223eea52790885f.PNG",
+    "static/media/Netflix.PNG": "/portfolio/static/media/Netflix.a5941f9e451cbdc3999b.PNG",
+    "static/media/Johns Cafe.PNG": "/portfolio/static/media/Johns Cafe.f320fa7fdf434ae9cad6.PNG",
+    "static/media/avatar.jpg": "/portfolio/static/media/avatar.a80ab5e9031742a0b882.jpg",
+    "static/media/Razer.PNG": "/portfolio/static/media/Razer.dd35187c4ff0756df949.PNG",
+    "static/media/Calculator.PNG": "/portfolio/static/media/Calculator.09536652e967fd1cb348.PNG",
     "static/media/linkedin.png": "/portfolio/static/media/linkedin.532617a791b8974b7652.png",
     "static/media/facebook.webp": "/portfolio/static/media/facebook.f1b98b28a01ce6ef2318.webp",
     "static/media/logo.svg": "/portfolio/static/media/logo.03ea5a731574a4181f152092fb965eca.svg",
     "index.html": "/portfolio/index.html",
     "main.91da16b7.css.map": "/portfolio/static/css/main.91da16b7.css.map",
-    "main.d5444b82.js.map": "/portfolio/static/js/main.d5444b82.js.map",
+    "main.0c54bd2c.js.map": "/portfolio/static/js/main.0c54bd2c.js.map",
     "453.1407b060.chunk.js.map": "/portfolio/static/js/453.1407b060.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.91da16b7.css",
-    "static/js/main.d5444b82.js"
+    "static/js/main.0c54bd2c.js"
   ]
 }
