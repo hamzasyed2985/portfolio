@@ -84,23 +84,23 @@ const Header = () => {
         <div className={`${loading ? styles.hiddenContent : ''}`}> {/* Hide content when loading */}
           <div className={styles.header}>
             <div className={styles.logo}>
-              <img src={logo} className="App-logo cursor-pointer" alt="Logo" onClick={() => { handleClick('/portfolio/') }} />
+              <img src={logo} className="App-logo cursor-pointer" alt="Logo" onClick={() => { handleClick('/') }} />
               <p className={styles.headerName}>Hamza</p>
               <Switch />
             </div>
             <nav className={styles.nav}>
 
-              <span className={`${styles.navItem} ${location.pathname === '/portfolio/' ? styles.activeNavItem : ''}`} onClick={() => handleClick('/portfolio/')}>Home</span>
-              <span className={`${styles.navItem} ${location.pathname === '/portfolio/projects' || location.pathname === '/portfolio/projects/calculator' ? styles.activeNavItem : ''}`} onClick={() => handleClick('/portfolio/projects')}>Projects</span>
+              <span className={`${styles.navItem} ${location.pathname === '/' ? styles.activeNavItem : ''}`} onClick={() => handleClick('/')}>Home</span>
+              <span className={`${styles.navItem} ${location.pathname === '/projects' || location.pathname === '/projects/calculator' ? styles.activeNavItem : ''}`} onClick={() => handleClick('/projects')}>Projects</span>
               <a href="https://github.com/hamzasyed2985" className={styles.navItem}>Github</a>
-              <span className={`${styles.navItem} ${location.pathname === '/portfolio/contact' ? styles.activeNavItem : ''}`} onClick={() => handleClick('/portfolio/contact')}>Contact</span>
+              <span className={`${styles.navItem} ${location.pathname === '/contact' ? styles.activeNavItem : ''}`} onClick={() => handleClick('/contact')}>Contact</span>
 
             </nav>
           </div>
 
           <div className={styles.mobileHeader}>
             <div className={styles.logo}>
-              <span to="/portfolio/"><img src={logo} className="App-logo" alt="Logoo" /></span>
+              <span to="/"><img src={logo} className="App-logo" alt="Logoo" /></span>
               <p className={styles.headerName}>Hamza</p>
               <Switch />
             </div>
@@ -111,11 +111,11 @@ const Header = () => {
             </div>
             <ul className={navMenuClass}>
               <li className={styles.mobileNavItem}>
-                <span className={`${styles.navItem} ${location.pathname === '/portfolio/' ? styles.activeNavItem : ''}`} onClick={() => handleClick('/portfolio/')}>HOME</span>
+                <span className={`${styles.navItem} ${location.pathname === '/' ? styles.activeNavItem : ''}`} onClick={() => handleClick('/')}>HOME</span>
                 <hr className={styles.hr} />
               </li>
               <li className={styles.mobileNavItem}>
-                <span className={`${styles.navItem} ${location.pathname === '/portfolio/projects' || location.pathname === '/portfolio/projects/calculator' ? styles.activeNavItem : ''}`} onClick={() => handleClick('/portfolio/projects')}>PROJECTS</span>
+                <span className={`${styles.navItem} ${location.pathname === '/projects' || location.pathname === '/projects/calculator' ? styles.activeNavItem : ''}`} onClick={() => handleClick('/projects')}>PROJECTS</span>
                 <hr className={styles.hr} />
               </li>
               <li className={styles.mobileNavItem}>
@@ -123,27 +123,27 @@ const Header = () => {
                 <hr className={styles.hr} />
               </li>
               <li className={styles.mobileNavItem}>
-                <span className={`${styles.navItem} ${location.pathname === '/portfolio/contact' ? styles.activeNavItem : ''}`} onClick={() => handleClick('/portfolio/contact')}>Contact</span>
+                <span className={`${styles.navItem} ${location.pathname === '/contact' ? styles.activeNavItem : ''}`} onClick={() => handleClick('/contact')}>Contact</span>
                 <hr className={styles.hr} />
               </li>
             </ul>
           </div>
           <Routes>
-            <Route path="/portfolio/" element={<Homepage />} />
-            <Route path="/portfolio/projects" element={<Projects />} />
-            <Route path="/portfolio/contact" element={<Contact />} />
-            <Route path="/portfolio/projects/calculator" element={<Calculator />} />
-            <Route path="/portfolio/projects/calculator-advance" element={<CalculatorAdvance />} />
-            <Route path="/portfolio/projects/todo-list-app" element={<Todo />} />
-            <Route path="/portfolio/projects/typing-test" element={<TypingApp />} />
+            <Route path="/" element={<Homepage />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/projects/calculator" element={<Calculator />} />
+            <Route path="/projects/calculator-advance" element={<CalculatorAdvance />} />
+            <Route path="/projects/todo-list-app" element={<Todo />} />
+            <Route path="/projects/typing-test" element={<TypingApp />} />
           </Routes>
         </div>
       )}
       <Routes>
 
-        <Route path="/portfolio/projects/calculator-advance" element={<CalculatorAdvance />} />
-        <Route path="/portfolio/projects/todo-list-app" element={<Todo />} />
-        <Route path="/portfolio/projects/typing-test" element={<TypingApp />} />
+        <Route path="/projects/calculator-advance" element={<CalculatorAdvance />} />
+        <Route path="/projects/todo-list-app" element={<Todo />} />
+        <Route path="/projects/typing-test" element={<TypingApp />} />
       </Routes>
     </div>
   );
