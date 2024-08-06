@@ -1,5 +1,7 @@
-#Personal Portfolio Website
+# Personal Portfolio Website
+
 My portfolio project showcases my expertise in React, highlighting my use of essential techniques such as React Router for dynamic content loading, hooks for managing state and lifecycle, props for component communication, and the Context API for state management. Additionally, I have effectively utilized Tailwind CSS to style my application, ensuring a responsive and visually appealing design.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
