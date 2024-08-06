@@ -14,25 +14,25 @@ const projects = [
     title: "Typing Test App",
     description: "",
     getImageSrc: () => require("../assets/typing.png"),
-    target: "/portfolio/projects/typing-test"
+    target: "/projects/typing-test"
   },
   {
     title: "Advance Calculator",
     description: "",
     getImageSrc: () => require("../assets/calculator-advance.jpg"),
-    target: "/portfolio/projects/calculator-advance"
+    target: "/projects/calculator-advance"
   },
   {
     title: "Todo List App",
     description: "",
     getImageSrc: () => require("../assets/todo.png"),
-    target: "/portfolio/projects/todo-list-app"
+    target: "/projects/todo-list-app"
   },
   {
     title: "Simple React Calculator",
     description: "",
     getImageSrc: () => require("../assets/Calculator.png"),
-    target: '/portfolio/projects/calculator'
+    target: '/projects/calculator'
   },
   {
     title: "Responsive Netflix Clone",
