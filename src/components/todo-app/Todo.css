@@ -46,8 +46,8 @@
  .checkbox-wrapper-15 .cbx span:first-child svg {
     position: absolute;
     z-index: 1;
-    top: 10px;
-    left: 6px;
+    top: 6px;
+    left: 5px;
     fill: none;
     stroke: white;
     stroke-width: 2;
@@ -81,7 +81,7 @@
  .checkbox-wrapper-15 .cbx span:last-child:after {
     content: "";
     position: absolute;
-    top: 10px;
+    top: 13px;
     left: 0;
     height: 1px;
     width: 100%;
