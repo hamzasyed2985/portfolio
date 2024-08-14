@@ -12,6 +12,8 @@ import Contact from './Contact';
 import Switch from '../Switch';
 import { useTheme } from '../ThemeContext';
 import { useSpinner } from './SpinnerContext';
+import Weather from './weather-app/Weather';
+import Tic from './tic-tac-toe/Tic';
 
 const styles = {
   body: "min-h-screen bg-custom-back dark:bg-custom-gradient bg-no-repeat bg-cover bg-top px-4 md:px-[4.5rem]",
@@ -32,6 +34,8 @@ const styles = {
   calculatorAdvanceBody: "min-h-screen bg-custom-calculator-back bg-no-repeat bg-cover bg-top flex justify-center items-center p-0 m-0",
   typingTestBody: "min-h-screen bg-[#4b4533] flex justify-center items-center p-0 m-0",
   todoListAppBody: "min-h-screen bg-[#1051000f] flex justify-center items-center m-0 p-0",
+  weather: "min-h-screen bg-weather-back bg-no-repeat bg-cover flex justify-center items-center m-0 p-0",
+  tic_tac: "flex flex-col gap-5 align-center justify-center items-center bg-[#efefef] min-h-screen",
 };
 
 const Header = () => {
@@ -61,6 +65,8 @@ const Header = () => {
     'calculator-advance',
     'typing-test',
     'todo-list-app',
+    'weather',
+    'tic-tac-toe'
   ].includes(lastPart);
 
   const getBodyClass = () => {
@@ -69,8 +75,12 @@ const Header = () => {
         return `${styles.calculatorAdvanceBody} ${theme}`;
       case 'typing-test':
         return `${styles.typingTestBody} ${theme}`;
+        case 'weather':
+          return `${styles.weather} ${theme}`;
       case 'todo-list-app':
         return `${styles.todoListAppBody} ${theme}`;
+        case 'tic-tac-toe':
+        return `${styles.tic_tac} ${theme}`;
       default:
         return `${styles.body} ${theme}`;
     }
@@ -136,6 +146,8 @@ const Header = () => {
             <Route path="/projects/calculator-advance" element={<CalculatorAdvance />} />
             <Route path="/projects/todo-list-app" element={<Todo />} />
             <Route path="/projects/typing-test" element={<TypingApp />} />
+            <Route path="/projects/weather" element={<Weather />} />
+            <Route path="/projects/tic-tac-toe" element={<Tic />} />
           </Routes>
         </div>
       )}
@@ -144,6 +156,8 @@ const Header = () => {
         <Route path="/projects/calculator-advance" element={<CalculatorAdvance />} />
         <Route path="/projects/todo-list-app" element={<Todo />} />
         <Route path="/projects/typing-test" element={<TypingApp />} />
+        <Route path="/projects/weather" element={<Weather />} />
+        <Route path="/projects/tic-tac-toe" element={<Tic />} />
       </Routes>
     </div>
   );

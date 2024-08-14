@@ -29,6 +29,18 @@ const projects = [
     target: "/projects/todo-list-app"
   },
   {
+    title: "Weather App",
+    description: "",
+    getImageSrc: () => require("../assets/weather.png"),
+    target: "/projects/weather"
+  },
+  {
+    title: "Tic-Tac-Toe",
+    description: "",
+    getImageSrc: () => require("../assets/tic.PNG"),
+    target: "/projects/tic-tac-toe"
+  },
+  {
     title: "Simple React Calculator",
     description: "",
     getImageSrc: () => require("../assets/Calculator.png"),
@@ -63,7 +75,7 @@ function Projects(props) {
 
     <div className="main-projects">
       <h1 className={styles.title} data-aos="fade-in" data-aos-duration="500" data-aos-delay="0" data-aos-easing="ease-out">My Projects Gallery</h1>
-      <div class={styles.galleryItem} data-aos="fade-in" data-aos-duration="500" data-aos-delay="0" data-aos-easing="ease-out">
+      <div class={styles.galleryItem} data-aos="fade-in" data-aos-duration="500" data-aos-delay="500" data-aos-easing="ease-out">
         {projects.map((project) => {
           return (<Card props={props} key={project.title} title={project.title} description={project.description} target={project.target} imageSrc={project.getImageSrc()} />);
         })}

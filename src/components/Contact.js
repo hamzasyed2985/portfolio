@@ -94,7 +94,7 @@ function Contact() {
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className={styles.form}>
+      <form onSubmit={handleSubmit} className={styles.form} data-aos="fade-down" data-aos-duration="500" data-aos-delay="" data-aos-easing="ease-out">
         <input
           type="text"
           name="name"

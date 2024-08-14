@@ -25,7 +25,7 @@ const styles = {
   hello: "text-2xl font-semibold m-0 text-[#6265fb]",
   introHeading: "text-3xl md:text-5xl m-0 font-bold transition text-[#17172e] dark:text-white",
   highlight: "text-[#6265fb] font-bold",
-  introParagraph: "text-3xl my-2.5 font-normal text-black dark:text-white",
+  introParagraph: "text-2xl sm:text-3xl my-2.5 font-normal text-black dark:text-white",
   aboutSection: "flex flex-col md:flex-row items-center justify-around py-16 gap-10",
   aboutLeft: "w-full bg-[#19192f] dark:bg-[#6265fb94] md:w-2/5 flex flex-col items-center justify-center text-white shadow-lg rounded-xl",
   aboutImg: "w-[250px] h-[250px] overflow-hidden rounded-full transition-all duration-500 ease-in-out mx-auto",
@@ -67,7 +67,7 @@ function Homepage() {
               'I am Shopify Developer',
               1000
             ]}
-            className="text-black dark:text-white font-bold text-3xl my-3"
+            className="text-black dark:text-white font-bold text-2xl sm:text-3xl my-3"
             wrapper="span"
             speed={2}
             deletionSpeed={10}
