@@ -32,7 +32,8 @@ const Card = ({ title, description, imageSrc, target }) => {
     title === "Advance Calculator" ||
     title === "Todo List App" ||
     title === "Simple React Calculator"||
-    title === "Weather App";
+    title === "Weather App" || 
+    title === "Tic-Tac-Toe";
 
   return (
     <div className={`${styles.card} card`}>
