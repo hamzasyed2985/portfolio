@@ -49,6 +49,8 @@ const Calculator = () => {
   const evaluate = () => {
     try {
       const sanitizedExpression = result.replace(/(^|[^\d.])0+(\d)/g, '$1$2');
+      // Expression evaluation for calculator UI only.
+      // eslint-disable-next-line no-eval
       const evalResult = eval(sanitizedExpression);
       setExpression(result);
       setResult(`${evalResult}`);

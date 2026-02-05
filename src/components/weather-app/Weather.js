@@ -41,6 +41,8 @@ const Weather = () => {
             console.log(error);
         }
     }
+    // Initial load for default city and cities list.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => { fetchData(); load(); }, [])
 
     const handleInput = (e) => {

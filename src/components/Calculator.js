@@ -1,6 +1,5 @@
 import logo from '../logo.svg';
-import React from 'react';
-import { useState } from "react";
+import React, { useRef, useState } from "react";
 
 const styles = {
   mainCalculator: "py-6",
@@ -16,8 +15,7 @@ const styles = {
 };
 
 function Calculator() {
-  const inputRef = useState(null);
-  const resultRef = useState(null);
+  const inputRef = useRef(null);
   const [result, setResult] = useState(0);
   const [inputText, setText] = useState('');
 

@@ -68,6 +68,7 @@ const Tic= ()=> {
 
   useEffect(() => {
     checkWinner();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [text]);
 
   return (

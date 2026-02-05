@@ -66,13 +66,7 @@ function Contact() {
                 </svg>
               </a>
             </li>
-            <li className={styles.iconContainer}>
-              <a href="javascript:void(0)">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill='#6265fb' viewBox="0 0 24 24">
-                  <path d="M23.954 4.569c-.885.39-1.832.656-2.825.775a4.916 4.916 0 0 0 2.163-2.723 9.746 9.746 0 0 1-3.1 1.184 4.902 4.902 0 0 0-8.351 4.455A13.905 13.905 0 0 1 1.671 3.149a4.897 4.897 0 0 0-.662 2.465c0 1.703.867 3.205 2.188 4.085a4.902 4.902 0 0 1-2.22-.616v.06c0 2.379 1.692 4.356 3.937 4.805-.413.112-.849.171-1.296.171-.317 0-.626-.03-.929-.087.627 1.956 2.444 3.379 4.599 3.419a9.81 9.81 0 0 1-7.277 2.031A13.835 13.835 0 0 0 7.548 21.5c8.99 0 13.899-7.458 13.899-13.917 0-.21-.005-.423-.014-.635a9.905 9.905 0 0 0 2.436-2.548l-.015-.01z" data-original="#000000" />
-                </svg>
-              </a>
-            </li>
+            {/* Optional third social icon slot removed to keep only active links */}
           </ul>
         </div>
       </div>
@@ -103,7 +97,7 @@ function Contact() {
 
         <div className="flex flex-wrap gap-3 pt-2">
           <a
-            href="mailto:info@example.com"
+            href="mailto:hamzasyed2985@gmail.com"
             className={styles.linkButton}
           >
             <span>Send an email</span>
