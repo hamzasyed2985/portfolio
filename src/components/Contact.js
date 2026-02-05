@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const styles = {
-  container: "grid sm:grid-cols-2 mt-4 sm:mt-36 items-start gap-16 p-4 mx-auto max-w-4xl bg-transparent font-[sans-serif]",
+  container: "grid sm:grid-cols-2 mt-4 sm:mt-36 items-start gap-16 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl bg-transparent font-[sans-serif]",
   heading: "text-3xl font-extrabold text-[#17172e] dark:text-white",
   subHeading: "text-sm mt-4 text-[#17172e] dark:text-white",
   section: "mt-12",
@@ -11,39 +11,14 @@ const styles = {
   iconContainer: "bg-[#e6e6e6cf] h-10 w-10 rounded-full flex items-center justify-center shrink-0",
   emailLink: "text-[#6265fb] text-sm ml-4",
   socialIcons: "flex mt-4 space-x-4",
-  form: "ml-auto space-y-4",
-  input: "w-full rounded-md py-3 px-4 bg-gray-100 text-gray-800 text-sm outline-[#6265fb] ",
-  textarea: "w-full rounded-md px-4 bg-gray-100 text-gray-800 text-sm pt-3 outline-[#6265fb] ",
-  button: "text-white bg-[#6265fb] hover:bg-[#494bc7] transition tracking-wide rounded-md text-sm px-4 py-3 w-full !mt-6"
+  rightColumn: "space-y-6",
+  pill: "inline-flex items-center rounded-full border border-slate-200 dark:border-slate-700 px-4 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-slate-600 dark:text-slate-300",
+  list: "space-y-2 text-sm text-[#17172e] dark:text-slate-300",
+  strong: "font-semibold text-[#17172e] dark:text-white",
+  linkButton: "inline-flex items-center gap-2 rounded-lg border border-slate-300 dark:border-slate-700 px-4 py-2 text-sm font-semibold text-slate-700 dark:text-slate-200 hover:border-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition",
 };
 
 function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(formData);
-    setFormData({
-      name: '',
-      email: '',
-      subject: '',
-      message: ''
-    });
-  };
-
   return (
     <div className={styles.container}>
       <div data-aos="fade-up" data-aos-duration="500" data-aos-delay="" data-aos-easing="ease-out">
@@ -58,9 +33,9 @@ function Contact() {
                   <path d="M434.146 59.882H44.912C20.146 59.882 0 80.028 0 104.794v269.47c0 24.766 20.146 44.912 44.912 44.912h389.234c24.766 0 44.912-20.146 44.912-44.912v-269.47c0-24.766-20.146-44.912-44.912-44.912zm0 29.941c2.034 0 3.969.422 5.738 1.159L239.529 264.631 39.173 90.982a14.902 14.902 0 0 1 5.738-1.159zm0 299.411H44.912c-8.26 0-14.971-6.71-14.971-14.971V122.615l199.778 173.141c2.822 2.441 6.316 3.655 9.81 3.655s6.988-1.213 9.81-3.655l199.778-173.141v251.649c-.001 8.26-6.711 14.97-14.971 14.97z" data-original="#000000" />
                 </svg>
               </div>
-              <a href="javascript:void(0)" className={styles.emailLink}>
+              <a href="mailto:hamzasyed2985@gmail.com" className={styles.emailLink}>
                 <small className="block">Mail</small>
-                <strong>info@example.com</strong>
+                <strong>hamzasyed2985@gmail.com</strong>
               </a>
             </li>
           </ul>
@@ -70,14 +45,22 @@ function Contact() {
           <h2 className={styles.sectionHeading}>Socials</h2>
           <ul className={styles.socialIcons}>
             <li className={styles.iconContainer}>
-              <a href="javascript:void(0)">
+              <a
+                href="https://www.linkedin.com/in/syed-hamza-07021724a/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill='#6265fb' viewBox="0 0 24 24">
                   <path d="M6.812 13.937H9.33v9.312c0 .414.335.75.75.75l4.007.001a.75.75 0 0 0 .75-.75v-9.312h2.387a.75.75 0 0 0 .744-.657l.498-4a.75.75 0 0 0-.744-.843h-2.885c.113-2.471-.435-3.202 1.172-3.202 1.088-.13 2.804.421 2.804-.75V.909a.75.75 0 0 0-.648-.743A26.926 26.926 0 0 0 15.071 0c-7.01 0-5.567 7.772-5.74 8.437H6.812a.75.75 0 0 0-.75.75v4c0 .414.336.75.75.75zm.75-3.999h2.518a.75.75 0 0 0 .75-.75V6.037c0-2.883 1.545-4.536 4.24-4.536.878 0 1.686.043 2.242.087v2.149c-.402.205-3.976-.884-3.976 2.697v2.755c0 .414.336.75.75.75h2.786l-.312 2.5h-2.474a.75.75 0 0 0-.75.75V22.5h-2.505v-9.312a.75.75 0 0 0-.75-.75H7.562z" data-original="#000000" />
                 </svg>
               </a>
             </li>
             <li className={styles.iconContainer}>
-              <a href="javascript:void(0)">
+              <a
+                href="https://github.com/hamzasyed2985"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill='#6265fb' viewBox="0 0 511 512">
                   <path d="M111.898 160.664H15.5c-8.285 0-15 6.719-15 15V497c0 8.285 6.715 15 15 15h96.398c8.286 0 15-6.715 15-15V175.664c0-8.281-6.714-15-15-15zM96.898 482H30.5V190.664h66.398zM63.703 0C28.852 0 .5 28.352.5 63.195c0 34.852 28.352 63.2 63.203 63.2 34.848 0 63.195-28.352 63.195-63.2C126.898 28.352 98.551 0 63.703 0zm0 96.395c-18.308 0-33.203-14.891-33.203-33.2C30.5 44.891 45.395 30 63.703 30c18.305 0 33.195 14.89 33.195 33.195 0 18.309-14.89 33.2-33.195 33.2zm289.207 62.148c-22.8 0-45.273 5.496-65.398 15.777-.684-7.652-7.11-13.656-14.942-13.656h-96.406c-8.281 0-15 6.719-15 15V497c0 8.285 6.719 15 15 15h96.406c8.285 0 15-6.715 15-15V320.266c0-22.735 18.5-41.23 41.235-41.23 22.734 0 41.226 18.495 41.226 41.23V497c0 8.285 6.719 15 15 15h96.398c8.281 0 15-6.715 15-15V309.379c.004-91.477-74.394-167.637-165.92-167.637zm-28.398 404H271.068V320.266c0-39.095-31.758-70.23-70.235-70.23-38.477 0-70.235 31.137-70.235 70.23V512H38.402V180.664h86.398V200c13.785-13.199 45.218-30.336 80.236-30.336h.016c63.285 0 115.812 46.41 125.195 109.403l.133.93c12.785-4.207 26.387-6.637 40.785-6.637 74.38 0 135.92 61.547 135.92 137.02V482h-66.398V320.266c0-39.093-31.758-70.23-70.234-70.23-38.477 0-70.235 31.137-70.235 70.23zm-100.101-26.832c0 8.285 6.715 15 15 15h96.406c8.281 0 15-6.715 15-15V497c0-8.285-6.719-15-15-15h-96.406c-8.285 0-15 6.715-15 15zm-175.133-56.77c0 8.281 6.715 15 15 15h96.406c8.281 0 15-6.719 15-15V175.664c0-8.281-6.719-15-15-15h-96.406c-8.285 0-15 6.719-15 15zm30.133 0h66.398V190.664h-66.398z" data-original="#000000" />
                 </svg>
@@ -94,45 +77,55 @@ function Contact() {
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className={styles.form} data-aos="fade-down" data-aos-duration="500" data-aos-delay="" data-aos-easing="ease-out">
-        <input
-          type="text"
-          name="name"
-          placeholder="Full Name"
-          className={styles.input}
-          value={formData.name}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Email Address"
-          className={styles.input}
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="text"
-          name="subject"
-          placeholder="Subject"
-          className={styles.input}
-          value={formData.subject}
-          onChange={handleChange}
-          required
-        />
-        <textarea
-          name="message"
-          rows="5"
-          placeholder="Message"
-          className={styles.textarea}
-          value={formData.message}
-          onChange={handleChange}
-          required
-        ></textarea>
-        <button type="submit" className={styles.button}>Send Message</button>
-      </form>
+      <div
+        className={styles.rightColumn}
+        data-aos="fade-down"
+        data-aos-duration="500"
+        data-aos-delay="150"
+        data-aos-easing="ease-out"
+      >
+        <span className={styles.pill}>How to reach me</span>
+
+        <div className={styles.list}>
+          <p>
+            <span className={styles.strong}>Project inquiries</span> – Share a short brief about your idea,
+            timeline, and budget range. I focus on web apps, product interfaces, and motion-heavy frontends.
+          </p>
+          <p>
+            <span className={styles.strong}>Collaboration</span> – I'm open to teaming up on interesting
+            products, dev tooling, or AI-powered workflows.
+          </p>
+          <p>
+            <span className={styles.strong}>Location & time zone</span> – Based in Pakistan, collaborating
+            remotely with flexible hours across time zones.
+          </p>
+        </div>
+
+        <div className="flex flex-wrap gap-3 pt-2">
+          <a
+            href="mailto:info@example.com"
+            className={styles.linkButton}
+          >
+            <span>Send an email</span>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/syed-hamza-07021724a/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.linkButton}
+          >
+            <span>LinkedIn</span>
+          </a>
+          <a
+            href="https://github.com/hamzasyed2985"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.linkButton}
+          >
+            <span>GitHub</span>
+          </a>
+        </div>
+      </div>
     </div>
   );
 }

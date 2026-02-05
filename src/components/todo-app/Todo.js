@@ -6,7 +6,7 @@ import { fadeIn } from 'react-animations';
 
 
 const styles = {
-    todoMain: "min-h-screen w-full",
+    todoMain: "min-h-screen w-full bg-[#1051000f] dark:bg-[#1051000f]",
     todoHeader: "bg-no-repeat bg-cover mb-20 flex justify-center",
     headerTitle: "text-white text-5xl font-semibold py-6",
     todoApp: "flex flex-col w-11/12 sm:w-10/12 md:w-3/4 mx-auto font-sans bg-[#1051000f] p-[5%] rounded-[40px]",
