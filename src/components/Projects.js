@@ -1,14 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 import Card from "../components/Card";
-import Aos from "aos";
-import "aos/dist/aos.css";
-
-const styles = {
-  title:
-    "text-3xl md:text-4xl font-bold my-8 text-center text-[#17172e] dark:text-white transition",
-  galleryItem:
-    "flex flex-row justify-center flex-wrap gap-6 md:gap-8 max-w-7xl mx-auto",
-};
 
 // Shared projects data. Each project can optionally have a details page.
 export const projects = [
@@ -22,6 +15,7 @@ export const projects = [
     demoPath: "https://github.com/hamzasyed2985/eduExtract",
     demoType: "github",
     hasDetails: true,
+    category: "featured",
     videoSrc: () => require("../assets/eduExtract.mp4"),
     detailOverview:
       "EduExtract is an AI-driven platform built as my final year project to transform long-form educational videos into structured, reusable learning resources. Instead of watching entire lectures again, learners and educators can quickly get summaries, quizzes, flashcards, slides, and blog-style writeups generated from the original content.",
@@ -56,6 +50,8 @@ export const projects = [
     demoPath: "https://github.com/hamzasyed2985/email-audit-backend",
     demoType: "github",
     hasDetails: true,
+    category: "client",
+    categories: ["featured", "client"],
     detailOverview:
       "For an email deliverability consultant, I built an automation system that turns a manual, multi-tool audit into a fully orchestrated workflow. Instead of checking each platform and copying data by hand, the system ingests client inputs, runs a consistent battery of tests, and compiles everything into a structured Notion report.",
     detailProblem:
@@ -90,6 +86,7 @@ export const projects = [
     demoPath: "https://asiacropsciences.com/",
     demoType: "external",
     hasDetails: true,
+    category: "client",
     detailOverview:
       "Asia CropSciences needed a website that could clearly present their product lines and crop segments while reflecting their commitment to sustainability and modern agriculture. I built a custom WordPress site that organises their fungicides, insecticides, herbicides, and plant health products into intuitive categories with clear navigation.",
     detailProblem:
@@ -113,6 +110,7 @@ export const projects = [
     demoPath: "https://historicaltourspakistan.com/",
     demoType: "external",
     hasDetails: true,
+    category: "client",
     detailOverview:
       "Historical Tours Pakistan offers highly curated tours focused on military and cultural history. I built their WordPress site to showcase signature tours, highlight their historian curators, and provide space for in-depth blog content about Pakistan’s heritage.",
     detailProblem:
@@ -136,6 +134,7 @@ export const projects = [
     demoPath: "/projects/typing-test",
     demoType: "internal",
     hasDetails: true,
+    category: "apps",
     detailOverview:
       "A browser-based typing test focused on measuring real-world typing performance rather than just raw speed. The app shuffles a large reference text, streams it in lines, and tracks how accurately and quickly the user types each word.",
     detailProblem:
@@ -158,6 +157,7 @@ export const projects = [
     demoPath: "/projects/calculator-advance",
     demoType: "internal",
     hasDetails: true,
+    category: "apps",
     detailOverview:
       "A desktop-style calculator built in React with a focus on UX details: expression preview, last-answer recall, and a layout optimised for both mouse and touch input.",
     detailProblem:
@@ -180,6 +180,7 @@ export const projects = [
     demoPath: "/projects/todo-list-app",
     demoType: "internal",
     hasDetails: true,
+    category: "apps",
     detailOverview:
       "A fully interactive todo list app that focuses on day-to-day usability: quickly adding tasks, marking them complete, editing them inline, and keeping the UI feeling alive with animations.",
     detailProblem:
@@ -202,6 +203,7 @@ export const projects = [
     demoPath: "/projects/weather",
     demoType: "internal",
     hasDetails: true,
+    category: "apps",
   },
   {
     id: "tic-tac-toe",
@@ -212,6 +214,7 @@ export const projects = [
     demoPath: "/projects/tic-tac-toe",
     demoType: "internal",
     hasDetails: true,
+    category: "apps",
     detailOverview:
       "A classic Tic-Tac-Toe implementation focused on clean game logic, visual feedback, and a persistent score counter so players can track multiple rounds.",
     detailProblem:
@@ -234,6 +237,7 @@ export const projects = [
     demoPath: "/projects/calculator",
     demoType: "internal",
     hasDetails: true,
+    category: "apps",
     detailOverview:
       "A minimal calculator used to practise fundamental React concepts like state updates, refs, and event handling while performing basic arithmetic on user input.",
     detailProblem:
@@ -257,6 +261,7 @@ export const projects = [
     demoPath: "https://hamzasyed2985.github.io/Netflix/",
     demoType: "external",
     hasDetails: true,
+    category: "web",
   },
   {
     id: "razer-clone",
@@ -267,6 +272,7 @@ export const projects = [
     demoPath: "https://hamzasyed2985.github.io/Razer",
     demoType: "external",
     hasDetails: true,
+    category: "web",
   },
   {
     id: "johns-cafe",
@@ -277,6 +283,7 @@ export const projects = [
     demoPath: "https://hamzasyed2985.github.io/JOHN's-Cafe",
     demoType: "external",
     hasDetails: true,
+    category: "web",
     detailOverview:
       "This café website was the final capstone project for the Johns Hopkins 'HTML, CSS, and JavaScript for Web Developers' course on Coursera. The goal was to build a fully responsive, multi-page site that demonstrates semantic HTML5, modern CSS layout, and non-trivial JavaScript interactions.",
     detailProblem:
@@ -290,50 +297,154 @@ export const projects = [
       "Used vanilla JavaScript for DOM manipulation and small interactive behaviours.",
     ],
   },
-  // (duplicates of client projects were removed here to avoid repeating cards)
 ];
 
 export function findProjectById(id) {
   return projects.find((p) => p.id === id);
 }
 
+const FILTERS = [
+  { id: "all", label: "All" },
+  { id: "featured", label: "Featured" },
+  { id: "client", label: "Client" },
+  { id: "apps", label: "Apps" },
+  { id: "web", label: "Web" },
+];
+
+const CATEGORY_LABELS = {
+  featured: "FEATURED",
+  client: "CLIENT",
+  apps: "APP",
+  web: "WEB",
+};
+
 function Projects() {
-  useEffect(() => {
-    Aos.init();
-    Aos.refresh();
-  }, []);
+  const [activeFilter, setActiveFilter] = useState("all");
+
+  const filtered = useMemo(() => {
+    if (activeFilter === "all") return projects;
+    return projects.filter((p) => {
+      const cats = p.categories || (p.category ? [p.category] : []);
+      return cats.includes(activeFilter);
+    });
+  }, [activeFilter]);
 
   return (
-    <div className="main-projects px-4 sm:px-6 lg:px-8 py-10">
-      <h1
-        className={styles.title}
-        data-aos="fade-in"
-        data-aos-duration="500"
-        data-aos-delay="0"
-        data-aos-easing="ease-out"
-      >
-        My Projects Gallery
-      </h1>
-      <div
-        className={styles.galleryItem}
-        data-aos="fade-in"
-        data-aos-duration="500"
-        data-aos-delay="500"
-        data-aos-easing="ease-out"
-      >
-        {projects.map((project) => (
-          <Card
-            key={project.id}
-            title={project.title}
-            description={project.shortDescription}
-            imageSrc={project.image()}
-            demoPath={project.demoPath}
-            demoType={project.demoType}
-            hasDetails={project.hasDetails}
-            detailId={project.id}
-          />
-        ))}
-      </div>
+    <div className="relative overflow-hidden bg-[#F4F6F8] text-[#0B0F14] dark:bg-[#0B0F14] dark:text-[#F4F6F8]">
+      <div className="pointer-events-none absolute inset-0 terminal-grid opacity-60 dark:opacity-80" aria-hidden />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#F4F6F8] dark:to-[#0B0F14]" aria-hidden />
+
+      <section className="relative mx-auto max-w-7xl px-4 pb-10 pt-10 sm:px-6 lg:px-8 lg:pt-14">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-3xl"
+        >
+          <p className="font-mono-tech text-xs tracking-[0.28em] text-teal-600 dark:text-teal-400">
+            SELECTED WORK
+          </p>
+          <h1 className="font-display mt-4 text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
+            Projects
+          </h1>
+          <p className="mt-5 max-w-2xl text-base leading-relaxed text-[#5c6778] dark:text-[#8b95a5] sm:text-lg">
+            Case studies and builds across AI platforms, automation systems,
+            client websites, and interactive React apps — focused on clear
+            product thinking and reliable delivery.
+          </p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55, delay: 0.15 }}
+          className="mt-10 flex flex-wrap gap-2 border-y border-[#0B0F14]/10 py-4 dark:border-white/10"
+        >
+          {FILTERS.map((filter) => {
+            const isActive = activeFilter === filter.id;
+            return (
+              <button
+                key={filter.id}
+                type="button"
+                onClick={() => setActiveFilter(filter.id)}
+                className={`font-mono-tech px-4 py-2 text-xs tracking-[0.18em] transition-colors ${
+                  isActive
+                    ? "bg-teal-500 text-[#0B0F14]"
+                    : "border border-[#0B0F14]/15 text-[#3d4654] hover:border-teal-600 hover:text-teal-700 dark:border-white/15 dark:text-[#c5ccd6] dark:hover:border-teal-400 dark:hover:text-teal-300"
+                }`}
+              >
+                {filter.label}
+              </button>
+            );
+          })}
+          <span className="font-mono-tech ml-auto self-center text-xs tracking-widest text-[#8b95a5]">
+            {filtered.length} SHOWN
+          </span>
+        </motion.div>
+      </section>
+
+      <section className="relative mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8 lg:pb-28">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeFilter}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.35 }}
+            className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3"
+          >
+            {filtered.map((project, index) => (
+              <Card
+                key={project.id}
+                index={index}
+                title={project.title}
+                description={project.shortDescription}
+                imageSrc={project.image()}
+                demoPath={project.demoPath}
+                demoType={project.demoType}
+                hasDetails={project.hasDetails}
+                detailId={project.id}
+                categoryLabel={
+                  CATEGORY_LABELS[
+                    project.categories?.includes("client")
+                      ? "client"
+                      : project.category
+                  ]
+                }
+              />
+            ))}
+          </motion.div>
+        </AnimatePresence>
+
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.65 }}
+          className="mt-20 border border-teal-500/30 bg-[#0B0F14] px-8 py-12 text-[#F4F6F8] sm:px-12"
+        >
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+            <div>
+              <p className="font-mono-tech text-xs tracking-[0.28em] text-teal-400">
+                NEXT STEP
+              </p>
+              <h2 className="font-display mt-3 text-3xl font-bold sm:text-4xl">
+                Have a product to ship?
+              </h2>
+              <p className="mt-3 max-w-xl text-[#8b95a5]">
+                Tell me about the problem and timeline — I&apos;ll help turn it
+                into a clear, buildable plan.
+              </p>
+            </div>
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 bg-teal-400 px-7 py-3.5 text-sm font-semibold text-[#0B0F14] transition-colors hover:bg-teal-300"
+            >
+              Start a conversation
+            </Link>
+          </div>
+        </motion.div>
+      </section>
     </div>
   );
 }

@@ -2,13 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --ink: #0b0f14;
+  --ink-elevated: #121821;
+  --paper: #f4f6f8;
+  --paper-elevated: #ffffff;
+  --muted: #8b95a5;
+  --muted-strong: #5c6778;
+  --teal: #2dd4bf;
+  --teal-dim: #14b8a6;
+  --teal-glow: rgba(45, 212, 191, 0.18);
+  --line: rgba(139, 149, 165, 0.22);
+  --font-display: "Syne", sans-serif;
+  --font-body: "Outfit", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
 @layer base {
   * {
     @apply border-border;
   }
-  
+
   body {
     margin: 0;
+    font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     box-sizing: border-box;
@@ -19,44 +36,34 @@
     scroll-behavior: smooth;
   }
 
-  /* Custom scrollbar */
   ::-webkit-scrollbar {
-    width: 10px;
+    width: 8px;
   }
 
   ::-webkit-scrollbar-track {
-    @apply bg-slate-100 dark:bg-slate-900;
+    background: transparent;
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-gradient-to-b from-indigo-500 to-purple-600 rounded-full;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    @apply from-indigo-600 to-purple-700;
+    background: linear-gradient(to bottom, #2dd4bf, #0f766e);
+    border-radius: 999px;
   }
 }
 
 @layer utilities {
-  .glass-card {
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+  .font-display {
+    font-family: var(--font-display);
   }
 
-  .text-gradient {
-    @apply bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent;
+  .font-mono-tech {
+    font-family: var(--font-mono);
   }
 
-  .gradient-border {
-    position: relative;
-    background: linear-gradient(white, white) padding-box,
-                linear-gradient(to right, #6366f1, #8b5cf6, #ec4899) border-box;
-    border: 2px solid transparent;
+  .text-teal-accent {
+    color: var(--teal);
+  }
+
+  .bg-teal-glow {
+    background: var(--teal-glow);
   }
 }
-
-
-
-
-
-

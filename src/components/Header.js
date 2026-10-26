@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import logo from '../logo.svg';
+import BrandMark from './BrandMark';
 import Homepage from './Homepage';
 import Projects from './Projects';
 import Calculator from './Calculator';
@@ -59,7 +59,7 @@ const Header = () => {
 
   const getBodyClass = () => {
     if (isDetailPage) {
-      return `min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/20 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 transition-colors duration-500 ${theme}`;
+      return `min-h-screen bg-[#F4F6F8] dark:bg-[#0B0F14] transition-colors duration-500 ${theme}`;
     }
     switch (lastPart) {
       case 'calculator-advance':
@@ -73,7 +73,7 @@ const Header = () => {
       case 'tic-tac-toe':
         return `flex flex-col gap-5 align-center justify-center items-center bg-[#efefef] min-h-screen ${theme}`;
       default:
-        return `min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/20 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 transition-colors duration-500 ${theme}`;
+        return `min-h-screen bg-[#F4F6F8] dark:bg-[#0B0F14] transition-colors duration-500 ${theme}`;
     }
   };
 
@@ -101,33 +101,24 @@ const Header = () => {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className={`hidden md:flex fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
               scrolled
-                ? 'bg-white dark:bg-slate-900 shadow-md border-b border-slate-200 dark:border-slate-800'
-                : 'bg-transparent'
+                ? 'border-b border-[#0B0F14]/10 bg-[#F4F6F8]/90 backdrop-blur-md dark:border-white/10 dark:bg-[#0B0F14]/90'
+                : 'border-b border-transparent bg-transparent'
             }`}
           >
             <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
               <motion.div
-                className="flex items-center gap-4 cursor-pointer group"
+                className="flex items-center gap-3 cursor-pointer text-[#0B0F14] dark:text-[#F4F6F8]"
                 onClick={() => handleClick('/')}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ opacity: 0.8 }}
+                whileTap={{ scale: 0.98 }}
               >
-                <motion.img
-                  src={logo}
-                  className="h-12 w-12"
-                  alt="Logo"
-                  animate={{ rotate: [0, 360] }}
-                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                />
-                <motion.span
-                  className="text-2xl font-bold bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400"
-                  whileHover={{ scale: 1.1 }}
-                >
+                <BrandMark className="h-11 w-11" />
+                <span className="font-display text-2xl font-bold tracking-tight">
                   Hamza
-                </motion.span>
+                </span>
               </motion.div>
 
-              <nav className="flex items-center gap-2">
+              <nav className="flex items-center gap-1">
                 {navItems.map((item, index) => (
                   <motion.div
                     key={item.path || item.href}
@@ -140,29 +131,29 @@ const Header = () => {
                         href={item.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="relative px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 rounded-lg transition-all duration-300 hover:text-indigo-600 dark:hover:text-indigo-400 group"
+                        className="relative px-4 py-2 text-sm font-medium text-[#3d4654] transition-colors duration-300 hover:text-teal-700 dark:text-[#c5ccd6] dark:hover:text-teal-300 group"
                       >
                         {item.label}
-                        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-indigo-600 to-purple-600 transition-all duration-300 group-hover:w-full" />
+                        <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-teal-500 transition-all duration-300 group-hover:w-full" />
                       </a>
                     ) : (
                       <button
                         onClick={() => handleClick(item.path)}
-                        className={`relative px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300 group ${
+                        className={`relative px-4 py-2 text-sm font-medium transition-colors duration-300 group ${
                           isActive(item)
-                            ? 'text-indigo-600 dark:text-indigo-400'
-                            : 'text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400'
+                            ? 'text-teal-700 dark:text-teal-300'
+                            : 'text-[#3d4654] hover:text-teal-700 dark:text-[#c5ccd6] dark:hover:text-teal-300'
                         }`}
                       >
                         {item.label}
                         {isActive(item) && (
                           <motion.span
-                            className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-indigo-600 to-purple-600"
+                            className="absolute bottom-0 left-0 h-0.5 w-full bg-teal-500"
                             layoutId="activeTab"
                             transition={{ type: "spring", stiffness: 380, damping: 30 }}
                           />
                         )}
-                        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-indigo-600 to-purple-600 transition-all duration-300 group-hover:w-full" />
+                        <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-teal-500 transition-all duration-300 group-hover:w-full" />
                       </button>
                     )}
                   </motion.div>
@@ -171,7 +162,7 @@ const Header = () => {
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.4, type: "spring", stiffness: 200 }}
-                  className="ml-4"
+                  className="ml-3"
                 >
                   <Switch />
                 </motion.div>
@@ -186,18 +177,18 @@ const Header = () => {
             transition={{ duration: 0.6 }}
             className={`md:hidden fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
               scrolled
-                ? 'bg-white dark:bg-slate-900 shadow-md border-b border-slate-200 dark:border-slate-800'
-                : 'bg-transparent'
+                ? 'border-b border-[#0B0F14]/10 bg-[#F4F6F8]/90 backdrop-blur-md dark:border-white/10 dark:bg-[#0B0F14]/90'
+                : 'border-b border-transparent bg-transparent'
             }`}
           >
             <div className="px-4 py-3 flex items-center justify-between">
               <motion.div
-                className="flex items-center gap-3 cursor-pointer"
+                className="flex items-center gap-3 cursor-pointer text-[#0B0F14] dark:text-[#F4F6F8]"
                 onClick={() => handleClick('/')}
-                whileTap={{ scale: 0.95 }}
+                whileTap={{ scale: 0.98 }}
               >
-                <img src={logo} className="h-10 w-10" alt="Logo" />
-                <span className="text-xl font-bold bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                <BrandMark className="h-9 w-9" />
+                <span className="font-display text-xl font-bold tracking-tight">
                   Hamza
                 </span>
               </motion.div>
@@ -205,7 +196,7 @@ const Header = () => {
                 <Switch />
                 <motion.button
                   onClick={toggleMenu}
-                  className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300"
+                  className="border border-[#0B0F14]/12 p-2 text-[#0B0F14] transition hover:border-teal-500 hover:text-teal-700 dark:border-white/15 dark:text-[#F4F6F8] dark:hover:border-teal-400 dark:hover:text-teal-300"
                   whileTap={{ scale: 0.9 }}
                 >
                   <svg
@@ -243,10 +234,10 @@ const Header = () => {
                   animate={{ x: 0 }}
                   exit={{ x: '-100%' }}
                   transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                  className="w-80 h-full bg-white dark:bg-slate-900 shadow-2xl"
+                  className="h-full w-80 border-r border-[#0B0F14]/10 bg-[#F4F6F8] dark:border-white/10 dark:bg-[#0B0F14]"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  <div className="p-6 pt-20 space-y-2">
+                  <div className="space-y-1 p-6 pt-20">
                     {navItems.map((item, index) => (
                       <motion.div
                         key={item.path || item.href}
@@ -259,10 +250,10 @@ const Header = () => {
                             href={item.href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className={`block px-4 py-3 rounded-xl text-base font-medium transition-all ${
+                            className={`block border-l-2 px-4 py-3 text-base font-medium transition-colors ${
                               isActive(item)
-                                ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white'
-                                : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
+                                ? 'border-teal-500 bg-teal-500/10 text-teal-700 dark:text-teal-300'
+                                : 'border-transparent text-[#3d4654] hover:border-teal-500/50 hover:bg-[#0B0F14]/5 dark:text-[#c5ccd6] dark:hover:bg-white/5'
                             }`}
                             onClick={toggleMenu}
                           >
@@ -274,10 +265,10 @@ const Header = () => {
                               handleClick(item.path);
                               toggleMenu();
                             }}
-                            className={`w-full text-left px-4 py-3 rounded-xl text-base font-medium transition-all ${
+                            className={`w-full border-l-2 px-4 py-3 text-left text-base font-medium transition-colors ${
                               isActive(item)
-                                ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white'
-                                : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
+                                ? 'border-teal-500 bg-teal-500/10 text-teal-700 dark:text-teal-300'
+                                : 'border-transparent text-[#3d4654] hover:border-teal-500/50 hover:bg-[#0B0F14]/5 dark:text-[#c5ccd6] dark:hover:bg-white/5'
                             }`}
                           >
                             {item.label}

@@ -1,603 +1,505 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
-import avatar from '../assets/avatar.webp';
-import animation from '../assets/animation (2).gif';
-import html from '../assets/html.webp';
-import css from '../assets/css.webp';
-import js from '../assets/js.webp';
-import nextjs from '../assets/next js.jpg';
-import tailwind from '../assets/tailwind.png';
-import vscode from '../assets/vs code.webp';
-import bootstrap from '../assets/bootstrap.webp';
-import mongodb from '../assets/mongo.png';
-import java from '../assets/java.webp';
-import node from '../assets/node.webp';
-import react from '../assets/react.webp';
-import python from '../assets/python.webp';
-import git from '../assets/git.webp';
-import githubimage from '../assets/github-image.webp';
-import { TypeAnimation } from 'react-type-animation';
-import Resume from '../assets/Resume.pdf';
+import { TypeAnimation } from "react-type-animation";
+import avatar from "../assets/avatar.webp";
+import html from "../assets/html.webp";
+import css from "../assets/css.webp";
+import js from "../assets/js.webp";
+import nextjs from "../assets/next js.jpg";
+import tailwind from "../assets/tailwind.png";
+import vscode from "../assets/vs code.webp";
+import bootstrap from "../assets/bootstrap.webp";
+import mongodb from "../assets/mongo.png";
+import java from "../assets/java.webp";
+import node from "../assets/node.webp";
+import react from "../assets/react.webp";
+import python from "../assets/python.webp";
+import git from "../assets/git.webp";
+import githubimage from "../assets/github-image.webp";
+import Resume from "../assets/Resume.pdf";
 
-const skills = ["NextJs", "Python", "React", "VsCode", "Git", "Tailwind", "Bootstrap", "Html", "Github", "Css", "JavaScript", "Node", "MongoDb", "Java"];
-const imgSrc = [nextjs, python, react, vscode, git, tailwind, bootstrap, html, githubimage, css, js, node, mongodb, java];
-
-const quickStats = [
-  { label: "Years Experience", value: "2+", icon: "🎯" },
-  { label: "Projects Shipped", value: "20+", icon: "🚀" },
-  { label: "Tech Stack", value: "Full-Stack", icon: "⚡" },
+const skills = [
+  "NextJs",
+  "Python",
+  "React",
+  "VsCode",
+  "Git",
+  "Tailwind",
+  "Bootstrap",
+  "Html",
+  "Github",
+  "Css",
+  "JavaScript",
+  "Node",
+  "MongoDb",
+  "Java",
 ];
 
-const services = [
+const imgSrc = [
+  nextjs,
+  python,
+  react,
+  vscode,
+  git,
+  tailwind,
+  bootstrap,
+  html,
+  githubimage,
+  css,
+  js,
+  node,
+  mongodb,
+  java,
+];
+
+const capabilities = [
   {
-    title: "Product Design",
-    description: "Modern UI systems, accessible components, and scalable design tokens.",
-    icon: "🎨",
-    gradient: "from-pink-500 to-rose-500",
+    title: "Interfaces that hold up",
+    description:
+      "Accessible React and Next.js UIs with clear hierarchy, responsive structure, and motion that supports the product.",
+    code: "01",
   },
   {
-    title: "Full-Stack Build",
-    description: "Next.js + React apps, backend APIs, and database integrations.",
-    icon: "💻",
-    gradient: "from-blue-500 to-cyan-500",
+    title: "APIs & data layer",
+    description:
+      "Node backends, MongoDB models, and clean contracts so the frontend stays fast and predictable.",
+    code: "02",
   },
   {
-    title: "Performance",
-    description: "Speed-focused, SEO-friendly builds with smooth interactions.",
-    icon: "⚡",
-    gradient: "from-purple-500 to-indigo-500",
+    title: "Ship-ready polish",
+    description:
+      "Performance, SEO basics, theming, and interaction details that make a build feel intentional.",
+    code: "03",
   },
 ];
 
 const highlights = [
-  "Responsive, mobile-first layouts",
-  "Design systems with reusable UI",
-  "Seamless light & dark theming",
-  "Animation-first user experience",
+  "Mobile-first responsive layouts",
+  "Reusable UI systems",
+  "Light & dark theming",
+  "Motion with purpose",
 ];
+
+const ease = [0.22, 1, 0.36, 1];
 
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
+    transition: { staggerChildren: 0.12 },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 28 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.6,
-      ease: [0.22, 1, 0.36, 1],
-    },
+    transition: { duration: 0.7, ease },
   },
 };
 
 function Homepage() {
   const heroRef = useRef(null);
   const aboutRef = useRef(null);
-  const servicesRef = useRef(null);
+  const capabilitiesRef = useRef(null);
   const skillsRef = useRef(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
-  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
-  const heroY = useTransform(scrollYProgress, [0, 1], [0, 150]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 1], [1, 0.3]);
-  const heroScale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, 120]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 1], [1, 0.25]);
+  const gridY = useTransform(scrollYProgress, [0, 1], [0, 80]);
 
-  const aboutInView = useInView(aboutRef, { once: true, amount: 0.3 });
-  const servicesInView = useInView(servicesRef, { once: true, amount: 0.2 });
+  const aboutInView = useInView(aboutRef, { once: true, amount: 0.25 });
+  const capabilitiesInView = useInView(capabilitiesRef, {
+    once: true,
+    amount: 0.2,
+  });
   const skillsInView = useInView(skillsRef, { once: true, amount: 0.2 });
-
-  useEffect(() => {
-    // Only enable parallax on desktop
-    if (window.innerWidth < 1024) return;
-    
-    const handleMouseMove = (e) => {
-      setMousePosition({
-        x: (e.clientX / window.innerWidth - 0.5) * 15,
-        y: (e.clientY / window.innerHeight - 0.5) * 15,
-      });
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
 
   const marqueeSkills = [...skills, ...skills];
 
   return (
-    <div className="relative overflow-hidden bg-white dark:bg-slate-950">
-      {/* Subtle Background Elements */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+    <div className="relative overflow-hidden bg-[#F4F6F8] text-[#0B0F14] dark:bg-[#0B0F14] dark:text-[#F4F6F8]">
+      {/* Hero */}
+      <section
+        ref={heroRef}
+        className="relative min-h-[100svh] flex items-center overflow-hidden"
+      >
         <motion.div
-          className="absolute -top-40 -right-32 h-[500px] w-[500px] rounded-full bg-gradient-to-br from-indigo-100/40 via-purple-100/40 to-pink-100/40 dark:from-indigo-950/40 dark:via-purple-950/40 dark:to-pink-950/40"
-          animate={{
-            x: [0, 50, 0],
-            y: [0, 30, 0],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        />
-        <motion.div
-          className="absolute -bottom-48 -left-20 h-[500px] w-[500px] rounded-full bg-gradient-to-br from-blue-100/40 via-cyan-100/40 to-sky-100/40 dark:from-blue-950/40 dark:via-cyan-950/40 dark:to-sky-950/40"
-          animate={{
-            x: [0, -50, 0],
-            y: [0, -30, 0],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        />
-      </div>
+          style={{ y: gridY }}
+          className="pointer-events-none absolute inset-0"
+          aria-hidden
+        >
+          <div className="absolute inset-0 terminal-grid" />
+          <div className="terminal-light absolute left-[60%] top-[35%] h-[50vmax] w-[50vmax] -translate-x-1/2 -translate-y-1/2 rounded-full blur-2xl" />
+          <div className="terminal-scan pointer-events-none absolute inset-x-0 top-0 w-full" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#F4F6F8]/40 via-transparent to-[#F4F6F8] dark:from-[#0B0F14]/55 dark:via-transparent dark:to-[#0B0F14]" />
+        </motion.div>
 
-      {/* Hero Section */}
-      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-24 md:pt-20 pb-16 sm:pb-32">
         <motion.div
-          style={{ y: heroY, opacity: heroOpacity, scale: heroScale }}
-          className="relative z-10 mx-auto max-w-7xl w-full"
+          style={{ y: heroY, opacity: heroOpacity }}
+          className="relative z-10 mx-auto w-full max-w-7xl px-4 pb-20 pt-28 sm:px-6 lg:px-8 lg:pt-32"
         >
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="grid gap-16 lg:grid-cols-2 items-center"
+            className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16"
           >
-            {/* Left Content */}
-            <motion.div variants={itemVariants} className="space-y-8">
-              <motion.span
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-                className="inline-flex items-center gap-2 rounded-full border border-indigo-200 dark:border-indigo-800 bg-indigo-50 dark:bg-indigo-950 px-5 py-2 text-xs font-semibold uppercase tracking-wider text-indigo-700 dark:text-indigo-300 shadow-sm"
+            <div>
+              <motion.p
+                variants={itemVariants}
+                className="font-mono-tech mb-6 text-xs tracking-[0.28em] text-teal-600 dark:text-teal-400 sm:text-sm"
               >
-                <motion.span
-                  animate={{ scale: [1, 1.2, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  className="h-2 w-2 rounded-full bg-indigo-500"
-                />
-                Available for freelance
-              </motion.span>
+                FULL STACK ENGINEER
+              </motion.p>
 
               <motion.h1
                 variants={itemVariants}
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-slate-900 dark:text-white"
+                className="font-display text-[clamp(3.2rem,10vw,6.8rem)] font-extrabold leading-[0.92] tracking-tight"
               >
-                Crafting{' '}
-                <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-                  immersive
-                </span>{' '}
-                digital experiences
+                Hamza
               </motion.h1>
+
+              <motion.h2
+                variants={itemVariants}
+                className="font-display mt-6 max-w-xl text-2xl font-semibold leading-snug text-[#3d4654] dark:text-[#c5ccd6] sm:text-3xl lg:text-[2.15rem]"
+              >
+                Full-stack systems that feel intentional.
+              </motion.h2>
 
               <motion.p
                 variants={itemVariants}
-                className="text-lg sm:text-xl md:text-2xl text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl"
+                className="mt-5 max-w-lg text-base leading-relaxed text-[#5c6778] dark:text-[#8b95a5] sm:text-lg"
               >
-                I'm <span className="font-semibold text-slate-900 dark:text-white">Syed Muhammad Hamza</span>, a full-stack developer blending thoughtful design, smooth motion, and scalable engineering to build unforgettable web experiences.
+                I design and ship React and Node products with clean
+                architecture, calm interfaces, and motion that earns its place.
               </motion.p>
 
               <motion.div
                 variants={itemVariants}
-                className="flex flex-wrap items-center gap-2 sm:gap-3 text-lg sm:text-xl font-semibold"
+                className="mt-4 flex flex-wrap items-center gap-2 font-mono-tech text-sm text-[#5c6778] dark:text-[#8b95a5]"
               >
-                <span className="text-slate-700 dark:text-slate-300">I'm a</span>
+                <span>role</span>
+                <span className="text-teal-600 dark:text-teal-400">=</span>
                 <TypeAnimation
                   sequence={[
-                    'MERN Stack Developer',
-                    2000,
-                    'Full Stack Engineer',
-                    1200,
-                    'UI Motion Specialist',
-                    1200,
-                    'Product-Ready Builder',
-                    1200,
+                    "MERN Stack Developer",
+                    2200,
+                    "Full Stack Engineer",
+                    1800,
+                    "Frontend + APIs",
+                    1800,
                   ]}
-                  className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent"
+                  className="text-[#0B0F14] dark:text-[#F4F6F8]"
                   wrapper="span"
                   speed={50}
-                  deletionSpeed={75}
+                  deletionSpeed={70}
                   repeat={Infinity}
                   cursor={false}
                 />
+                <motion.span
+                  aria-hidden
+                  className="inline-block h-4 w-[2px] bg-teal-500"
+                  animate={{ opacity: [1, 0, 1] }}
+                  transition={{ duration: 1, repeat: Infinity }}
+                />
               </motion.div>
 
               <motion.div
                 variants={itemVariants}
-                className="flex flex-wrap gap-4 pt-4"
+                className="mt-10 flex flex-wrap gap-3 sm:gap-4"
               >
-                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                  <Link
-                    to="/projects"
-                    className="group relative inline-flex items-center gap-2 overflow-hidden rounded-lg bg-gradient-to-r from-indigo-600 to-purple-600 px-8 py-4 text-base font-semibold text-white shadow-lg transition-all duration-300 hover:shadow-xl"
-                  >
-                    <span className="relative z-10">View Projects</span>
-                    <motion.svg
-                      className="relative z-10 h-5 w-5"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      animate={{ x: [0, 4, 0] }}
-                      transition={{ duration: 1.5, repeat: Infinity }}
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                    </motion.svg>
-                  </Link>
-                </motion.div>
-                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                  <a
-                    href={Resume}
-                    download
-                    className="inline-flex items-center gap-2 rounded-lg border-2 border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-8 py-4 text-base font-semibold text-slate-700 dark:text-slate-300 transition-all duration-300 hover:border-indigo-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:shadow-md"
-                  >
-                    Download CV
-                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                    </svg>
-                  </a>
-                </motion.div>
-                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                  <a
-                    href="https://www.linkedin.com/in/syed-hamza-07021724a/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-lg border-2 border-indigo-400 dark:border-indigo-600 bg-indigo-50 dark:bg-indigo-950 px-8 py-4 text-base font-semibold text-indigo-600 dark:text-indigo-400 transition-all duration-300 hover:bg-indigo-100 dark:hover:bg-indigo-900 hover:shadow-md"
-                  >
-                    LinkedIn
-                    <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                    </svg>
-                  </a>
-                </motion.div>
-              </motion.div>
-
-            </motion.div>
-
-            {/* Right Content - 3D Illustration only */}
-            <motion.div
-              variants={itemVariants}
-              style={{
-                x: mousePosition.x,
-                y: mousePosition.y,
-              }}
-              className="relative flex justify-center lg:justify-end"
-            >
-              <motion.img
-                src={animation}
-                alt="3D developer illustration"
-                className="h-[260px] sm:h-[320px] lg:h-[360px] w-auto object-contain drop-shadow-2xl"
-                whileHover={{ scale: 1.03 }}
-                transition={{ duration: 0.4 }}
-              />
-            </motion.div>
-          </motion.div>
-
-        </motion.div>
-      </section>
-
-      {/* Quick Stats Section (moved below hero for better balance) */}
-      <section className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-12">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          className="grid grid-cols-1 sm:grid-cols-3 gap-4"
-        >
-          {quickStats.map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              variants={itemVariants}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ delay: 0.1 * index }}
-              className="group relative overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 text-center shadow-sm transition-all duration-300 hover:shadow-md"
-            >
-              <div className="text-3xl mb-2">{stat.icon}</div>
-              <p className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-                {stat.value}
-              </p>
-              <p className="text-xs font-medium uppercase tracking-wider text-slate-500 dark:text-slate-400 mt-2">
-                {stat.label}
-              </p>
-            </motion.div>
-          ))}
-        </motion.div>
-      </section>
-
-      {/* About Section */}
-      <motion.section
-        ref={aboutRef}
-        initial="hidden"
-        animate={aboutInView ? "visible" : "hidden"}
-        variants={containerVariants}
-        className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 lg:py-32"
-      >
-        <div className="grid gap-16 lg:grid-cols-2 items-center">
-          <motion.div variants={itemVariants} className="relative order-2 lg:order-1">
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              className="relative"
-            >
-              <div className="relative rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-10 text-center shadow-xl">
-                <motion.div
-                  className="mx-auto h-48 w-48 overflow-hidden rounded-full border-4 border-indigo-100 dark:border-indigo-900 shadow-lg mb-6"
-                >
-                  <img src={avatar} alt="about" className="h-full w-full object-cover" />
-                </motion.div>
-                <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">Syed Muhammad Hamza</h2>
-                <p className="text-sm uppercase tracking-widest text-indigo-600 dark:text-indigo-400 font-semibold">
-                  MERN Stack Developer
-                </p>
-              </div>
-            </motion.div>
-          </motion.div>
-
-          <motion.div variants={itemVariants} className="space-y-6 order-1 lg:order-2">
-            <div>
-              <motion.p
-                initial={{ opacity: 0, x: -20 }}
-                animate={aboutInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: 0.2 }}
-                className="text-sm font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400"
-              >
-                About
-              </motion.p>
-              <motion.h3
-                initial={{ opacity: 0, x: -20 }}
-                animate={aboutInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: 0.3 }}
-                className="mt-4 text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white"
-              >
-                Designing future-ready digital experiences.
-              </motion.h3>
-            </div>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={aboutInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.4 }}
-              className="text-lg leading-relaxed text-slate-600 dark:text-slate-300"
-            >
-              With a strong foundation in computer science and hands-on experience in full-stack engineering, I build fast, accessible, and elegant web applications. I focus on product clarity, delightful motion, and a clean architecture that scales.
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={aboutInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.5 }}
-              className="grid gap-3 sm:grid-cols-2"
-            >
-              {highlights.map((item, index) => (
-                <motion.div
-                  key={item}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={aboutInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ delay: 0.6 + index * 0.1 }}
-                  whileHover={{ x: 4 }}
-                  className="flex items-center gap-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800 px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-300 shadow-sm"
-                >
-                  <motion.span
-                    className="h-2 w-2 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500"
-                    animate={{ scale: [1, 1.2, 1] }}
-                    transition={{ duration: 2, repeat: Infinity, delay: index * 0.2 }}
-                  />
-                  {item}
-                </motion.div>
-              ))}
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={aboutInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.9 }}
-              className="flex flex-wrap gap-4 pt-4"
-            >
-              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-indigo-600 to-purple-600 px-8 py-4 text-base font-semibold text-white shadow-lg transition-all duration-300 hover:shadow-xl"
-                >
-                  Let's Collaborate
-                  <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
-                </Link>
-              </motion.div>
-              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                <a
-                  href="https://github.com/hamzasyed2985"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-lg border-2 border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-8 py-4 text-base font-semibold text-slate-700 dark:text-slate-300 transition-all duration-300 hover:border-indigo-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:shadow-md"
-                >
-                  GitHub
-                  <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.162-1.11-1.47-1.11-1.47-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
-                  </svg>
-                </a>
-              </motion.div>
-            </motion.div>
-          </motion.div>
-        </div>
-      </motion.section>
-
-      {/* Services Section */}
-      <motion.section
-        ref={servicesRef}
-        initial="hidden"
-        animate={servicesInView ? "visible" : "hidden"}
-        variants={containerVariants}
-        className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 lg:py-32"
-      >
-        <motion.div
-          variants={itemVariants}
-          className="flex flex-col items-start gap-6 sm:flex-row sm:items-end sm:justify-between mb-16"
-        >
-          <div>
-            <p className="text-sm font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">
-              What I do
-            </p>
-            <h3 className="mt-4 text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white">
-              Services tailored for modern products
-            </h3>
-          </div>
-          <motion.div whileHover={{ x: 4 }} whileTap={{ scale: 0.98 }}>
-            <Link
-              to="/projects"
-              className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 transition-colors hover:text-indigo-600 dark:hover:text-indigo-400"
-            >
-              Explore Work
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
-            </Link>
-          </motion.div>
-        </motion.div>
-
-        <div className="grid gap-8 md:grid-cols-3">
-          {services.map((service, index) => (
-            <motion.div
-              key={service.title}
-              variants={itemVariants}
-              initial={{ opacity: 0, y: 50 }}
-              animate={servicesInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: index * 0.15 }}
-              whileHover={{ y: -8 }}
-              className="group relative overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-8 shadow-lg transition-all duration-300 hover:shadow-xl"
-            >
-              <div className="relative z-10">
-                <div className="text-4xl mb-4">{service.icon}</div>
-                <h4 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">
-                  {service.title}
-                </h4>
-                <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
-                  {service.description}
-                </p>
-                <motion.div
-                  className={`h-1 w-16 rounded-full bg-gradient-to-r ${service.gradient}`}
-                  initial={{ width: 0 }}
-                  animate={servicesInView ? { width: 64 } : {}}
-                  transition={{ delay: 0.5 + index * 0.15, duration: 0.5 }}
-                />
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </motion.section>
-
-      {/* Skills Section */}
-      <motion.section
-        ref={skillsRef}
-        initial="hidden"
-        animate={skillsInView ? "visible" : "hidden"}
-        variants={containerVariants}
-        className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 lg:py-32"
-      >
-        <motion.div
-          variants={itemVariants}
-          className="flex flex-col items-start gap-4 mb-12"
-        >
-          <p className="text-sm font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">
-            Toolbox
-          </p>
-          <h3 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white">
-            Skills & technologies
-          </h3>
-          <p className="max-w-xl text-slate-600 dark:text-slate-300">
-            A balanced stack that blends rapid prototyping, scalable engineering, and smooth motion design.
-          </p>
-        </motion.div>
-
-        <motion.div
-          variants={itemVariants}
-          className="relative"
-        >
-          <div className="marquee">
-            <div className="marquee__inner gap-10 px-6 items-center">
-              {marqueeSkills.map((skill, index) => (
-                <motion.div
-                  key={`${skill}-${index}`}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={skillsInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ delay: index * 0.03 }}
-                  className="flex min-w-[200px] items-center gap-4 text-base sm:text-lg font-semibold text-slate-800 dark:text-slate-100"
-                >
-                  <motion.img
-                    src={imgSrc[index % imgSrc.length]}
-                    alt={skill}
-                    className="h-12 w-12 sm:h-14 sm:w-14 rounded-full object-cover"
-                    whileHover={{ rotate: 360 }}
-                    transition={{ duration: 0.6 }}
-                  />
-                  <span>{skill}</span>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </motion.div>
-      </motion.section>
-
-      {/* CTA Section */}
-      <motion.section
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.8 }}
-        className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 lg:py-32"
-      >
-        <motion.div
-          whileHover={{ scale: 1.01 }}
-          className="relative overflow-hidden rounded-3xl border border-indigo-200 dark:border-indigo-900 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 px-8 sm:px-12 lg:px-16 py-16 sm:py-20 text-white shadow-2xl"
-        >
-          <div className="relative z-10 flex flex-col items-start gap-8 lg:flex-row lg:items-center lg:justify-between">
-            <div className="space-y-4">
-              <p className="text-xs font-bold uppercase tracking-widest text-white/90">
-                Let's build
-              </p>
-              <h3 className="text-4xl sm:text-5xl font-bold">
-                Ready to craft your next standout product?
-              </h3>
-              <p className="text-lg text-white/90 max-w-2xl">
-                Share your idea and I'll help translate it into a polished, high-performing web experience.
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-4">
-              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-2 rounded-lg bg-white px-8 py-4 text-base font-semibold text-slate-900 shadow-lg transition-all duration-300 hover:shadow-xl"
-                >
-                  Start a Project
-                  <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
-                </Link>
-              </motion.div>
-              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                 <Link
                   to="/projects"
-                  className="inline-flex items-center gap-2 rounded-lg border-2 border-white/80 bg-white/10 px-8 py-4 text-base font-semibold text-white transition-all duration-300 hover:bg-white/20 hover:border-white"
+                  className="inline-flex items-center gap-2 bg-[#0B0F14] px-7 py-3.5 text-sm font-semibold text-[#F4F6F8] transition-colors hover:bg-teal-700 dark:bg-teal-400 dark:text-[#0B0F14] dark:hover:bg-teal-300"
                 >
-                  See Case Studies
-                  <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                  View Projects
+                  <svg
+                    className="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M13 7l5 5m0 0l-5 5m5-5H6"
+                    />
                   </svg>
                 </Link>
+                <a
+                  href={Resume}
+                  download
+                  className="inline-flex items-center gap-2 border border-[#0B0F14]/25 bg-transparent px-7 py-3.5 text-sm font-semibold text-[#0B0F14] transition-colors hover:border-teal-600 hover:text-teal-700 dark:border-white/25 dark:text-[#F4F6F8] dark:hover:border-teal-400 dark:hover:text-teal-300"
+                >
+                  Download CV
+                </a>
               </motion.div>
+            </div>
+
+            {/* Visual anchor — stack diagram */}
+            <motion.div
+              variants={itemVariants}
+              className="relative mx-auto w-full max-w-[420px] lg:ml-auto lg:mr-0"
+              aria-hidden
+            >
+              <div className="relative aspect-square">
+                <div className="hero-orbit absolute inset-[6%] rounded-full border border-[#0B0F14]/12 dark:border-white/12">
+                  <span className="absolute left-1/2 top-0 h-2 w-2 -translate-x-1/2 -translate-y-1/2 bg-teal-500" />
+                </div>
+                <div className="hero-orbit-reverse absolute inset-[18%] rounded-full border border-dashed border-teal-500/40">
+                  <span className="absolute bottom-0 left-1/2 h-1.5 w-1.5 -translate-x-1/2 translate-y-1/2 bg-[#0B0F14]/40 dark:bg-white/40" />
+                </div>
+
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-8">
+                  {[
+                    { label: "INTERFACE", sub: "React · Next.js", shift: "translate-x-3" },
+                    { label: "SERVICES", sub: "Node · APIs", shift: "translate-x-0" },
+                    { label: "DATA", sub: "MongoDB", shift: "-translate-x-3" },
+                  ].map((layer, index) => (
+                    <motion.div
+                      key={layer.label}
+                      initial={{ opacity: 0, y: 16 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.45 + index * 0.12, duration: 0.55, ease }}
+                      className={`w-full border border-[#0B0F14]/15 bg-[#F4F6F8]/90 px-5 py-4 backdrop-blur-sm dark:border-white/12 dark:bg-[#121821]/90 ${layer.shift}`}
+                    >
+                      <p className="font-mono-tech text-[10px] tracking-[0.24em] text-teal-700 dark:text-teal-400">
+                        {String(index + 1).padStart(2, "0")} · {layer.label}
+                      </p>
+                      <p className="font-display mt-1 text-lg font-semibold tracking-tight sm:text-xl">
+                        {layer.sub}
+                      </p>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        </motion.div>
+      </section>
+
+      {/* About */}
+      <section
+        ref={aboutRef}
+        className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-32"
+      >
+        <div className="grid items-center gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={aboutInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, ease }}
+            className="relative mx-auto w-full max-w-[320px] lg:mx-0 lg:max-w-[340px]"
+          >
+            <div className="absolute -inset-3 border border-teal-500/30" />
+            <div className="relative overflow-hidden bg-[#121821]">
+              <img
+                src={avatar}
+                alt="Syed Muhammad Hamza"
+                className="aspect-[4/5] h-auto w-full object-cover object-[center_82%] opacity-95"
+              />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#0B0F14] via-[#0B0F14]/70 to-transparent p-5">
+                <p className="font-display text-xl font-bold text-white sm:text-2xl">
+                  Syed Muhammad Hamza
+                </p>
+                <p className="font-mono-tech mt-1 text-xs tracking-widest text-teal-400">
+                  MERN STACK DEVELOPER
+                </p>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={aboutInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.1, ease }}
+            className="space-y-6"
+          >
+            <p className="font-mono-tech text-xs tracking-[0.28em] text-teal-600 dark:text-teal-400">
+              ABOUT
+            </p>
+            <h3 className="font-display text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
+              Building future-ready digital products end to end.
+            </h3>
+            <p className="max-w-xl text-base leading-relaxed text-[#5c6778] dark:text-[#8b95a5] sm:text-lg">
+              Computer science foundation, full-stack practice. I care about
+              product clarity, reliable APIs, and interfaces that stay fast as
+              they grow.
+            </p>
+            <ul className="grid gap-3 sm:grid-cols-2">
+              {highlights.map((item, index) => (
+                <motion.li
+                  key={item}
+                  initial={{ opacity: 0, x: -12 }}
+                  animate={aboutInView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ delay: 0.25 + index * 0.08, duration: 0.5 }}
+                  className="flex items-center gap-3 border-l-2 border-teal-500/70 pl-3 text-sm font-medium text-[#3d4654] dark:text-[#c5ccd6]"
+                >
+                  {item}
+                </motion.li>
+              ))}
+            </ul>
+            <div className="flex flex-wrap gap-3 pt-2">
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-2 bg-teal-500 px-6 py-3 text-sm font-semibold text-[#0B0F14] transition-colors hover:bg-teal-600 dark:hover:bg-teal-300"
+              >
+                Let&apos;s Collaborate
+              </Link>
+              <a
+                href="https://github.com/hamzasyed2985"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 border border-[#0B0F14]/25 px-6 py-3 text-sm font-semibold text-[#0B0F14] transition-colors hover:border-teal-600 hover:text-teal-700 dark:border-white/25 dark:text-[#F4F6F8] dark:hover:border-teal-400 dark:hover:text-teal-300"
+              >
+                GitHub
+              </a>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Capabilities */}
+      <section
+        ref={capabilitiesRef}
+        className="relative border-y border-[#0B0F14]/10 bg-white/70 py-24 dark:border-white/10 dark:bg-[#121821]/60 sm:py-28"
+      >
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-14 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="font-mono-tech text-xs tracking-[0.28em] text-teal-600 dark:text-teal-400">
+                CAPABILITIES
+              </p>
+              <h3 className="font-display mt-3 text-3xl font-bold sm:text-4xl lg:text-5xl">
+                What I bring to a build
+              </h3>
+            </div>
+            <Link
+              to="/projects"
+              className="font-mono-tech text-xs tracking-widest text-[#5c6778] transition-colors hover:text-teal-700 dark:text-[#8b95a5] dark:hover:text-teal-300"
+            >
+              EXPLORE WORK →
+            </Link>
+          </div>
+
+          <div className="grid gap-0 md:grid-cols-3">
+            {capabilities.map((item, index) => (
+              <motion.article
+                key={item.title}
+                initial={{ opacity: 0, y: 36 }}
+                animate={capabilitiesInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: index * 0.12, duration: 0.65, ease }}
+                className="group border border-[#0B0F14]/10 bg-[#F4F6F8]/40 p-8 transition-colors hover:border-teal-600/60 hover:bg-white dark:border-white/10 dark:bg-transparent dark:hover:border-teal-400/50 dark:hover:bg-white/[0.03] md:-ml-px"
+              >
+                <p className="font-mono-tech text-xs text-teal-600 dark:text-teal-400">
+                  {item.code}
+                </p>
+                <h4 className="font-display mt-5 text-xl font-bold sm:text-2xl">
+                  {item.title}
+                </h4>
+                <p className="mt-4 text-sm leading-relaxed text-[#5c6778] dark:text-[#8b95a5] sm:text-base">
+                  {item.description}
+                </p>
+                <div className="mt-8 h-px w-10 bg-teal-500 transition-all duration-300 group-hover:w-16" />
+              </motion.article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Skills */}
+      <section
+        ref={skillsRef}
+        className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-32"
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={skillsInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.65, ease }}
+          className="mb-12"
+        >
+          <p className="font-mono-tech text-xs tracking-[0.28em] text-teal-600 dark:text-teal-400">
+            TOOLBOX
+          </p>
+          <h3 className="font-display mt-3 text-3xl font-bold sm:text-4xl lg:text-5xl">
+            Skills & technologies
+          </h3>
+          <p className="mt-4 max-w-xl text-[#5c6778] dark:text-[#8b95a5]">
+            A stack tuned for rapid builds, scalable backends, and interfaces
+            that stay sharp in production.
+          </p>
+        </motion.div>
+
+        <div className="marquee">
+          <div className="marquee__inner items-center gap-10 px-4">
+            {marqueeSkills.map((skill, index) => (
+              <div
+                key={`${skill}-${index}`}
+                className="marquee-item flex min-w-[180px] items-center gap-4 border border-[#0B0F14]/12 bg-white px-4 py-3 text-[#0B0F14] dark:border-white/12 dark:bg-[#121821] dark:text-[#F4F6F8]"
+              >
+                <img
+                  src={imgSrc[index % imgSrc.length]}
+                  alt=""
+                  className="h-10 w-10 rounded-full object-cover sm:h-12 sm:w-12"
+                  draggable={false}
+                />
+                <span className="font-mono-tech text-sm font-medium tracking-wide">
+                  {skill}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="relative mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8 lg:pb-32">
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.35 }}
+          transition={{ duration: 0.7, ease }}
+          className="relative overflow-hidden border border-teal-500/30 bg-[#0B0F14] px-8 py-16 text-[#F4F6F8] sm:px-12 sm:py-20 lg:px-16"
+        >
+          <div className="pointer-events-none absolute inset-0 terminal-grid opacity-40" />
+          <div className="terminal-light absolute -right-20 -top-24 h-72 w-72 rounded-full blur-2xl" />
+          <div className="relative z-10 flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+            <div className="max-w-2xl space-y-4">
+              <p className="font-mono-tech text-xs tracking-[0.28em] text-teal-400">
+                LET&apos;S BUILD
+              </p>
+              <h3 className="font-display text-3xl font-bold sm:text-4xl lg:text-5xl">
+                Ready for your next product?
+              </h3>
+              <p className="text-base text-[#8b95a5] sm:text-lg">
+                Share the idea. I&apos;ll help turn it into a clear, fast, and
+                polished web experience.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-2 bg-teal-400 px-7 py-3.5 text-sm font-semibold text-[#0B0F14] transition-colors hover:bg-teal-300"
+              >
+                Start a Project
+              </Link>
+              <Link
+                to="/projects"
+                className="inline-flex items-center gap-2 border border-white/30 px-7 py-3.5 text-sm font-semibold text-[#F4F6F8] transition-colors hover:border-teal-400 hover:text-teal-300"
+              >
+                See Work
+              </Link>
             </div>
           </div>
         </motion.div>
-      </motion.section>
+      </section>
     </div>
   );
 }
